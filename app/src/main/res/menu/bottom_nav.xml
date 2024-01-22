@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:title="Dashboard"
+        android:id="@+id/dashboard"
+        android:icon="@drawable/baseline_dashboard_24"
+        app:showAsAction="withText"/>
+
+    <item android:title="Request"
+        android:id="@+id/request"
+        android:icon="@drawable/bank_fill_money"
+        app:showAsAction="withText"/>
+
+    <item android:title="Repay"
+        android:id="@+id/repay"
+        android:icon="@drawable/bank_card"
+        android:iconTint="@color/grey"
+        app:showAsAction="withText"/>
+
+    <item android:title="Status"
+        android:id="@+id/status"
+        android:icon="@drawable/heart_pulse_fill"
+        android:iconTint="@color/grey"
+        app:showAsAction="withText"/>
+
+    <item android:title="History"
+        android:id="@+id/history"
+        android:icon="@drawable/history"
+        app:showAsAction="withText"/>
+</menu>

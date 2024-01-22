@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundBlue">
+
+    <Button
+        android:id="@+id/SkipButton"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="671dp"
+        android:backgroundTint="@color/backgroundBlue"
+        android:text="SKIP"
+        android:textColor="@color/blue" />
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:src="@drawable/walkthrough3"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Smart Financial Planning"
+        android:fontFamily="@font/inter_semibold"
+        android:textColor="@color/blue"
+        android:textSize="20sp"
+        android:layout_centerInParent="true"/>
+
+    <TextView
+        android:id="@+id/textViewDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/blue"
+        android:fontFamily="@font/inter"
+        android:layout_margin="30dp"
+        android:padding="8dp"
+        android:layout_below="@id/textViewTitle"
+        android:layout_marginTop="20dp"
+        />
+
+
+    <Button
+        android:id="@+id/actionButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewDescription"
+        android:text="GET STARTED"
+        android:fontFamily="@font/inter_semibold"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:backgroundTint="@color/blue"
+        android:textColor="@color/white"
+        />
+
+<!--    <Button-->
+<!--        android:id="@+id/btn_signup"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/actionButton"-->
+<!--        android:layout_marginTop="40px"-->
+<!--        android:layout_marginLeft="150px"-->
+<!--        android:layout_marginRight="150px"-->
+<!--        android:text="SIGN UP"-->
+<!--        android:textColor="@color/blue"-->
+<!--        android:backgroundTint="@color/white"/>-->
+
+<!--    <Button-->
+<!--        android:id="@+id/btn_signin"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/btn_signup"-->
+<!--        android:layout_marginLeft="150px"-->
+<!--        android:layout_marginRight="150px"-->
+<!--        android:layout_marginTop="10px"-->
+<!--        android:text="SIGN IN"-->
+<!--        android:textColor="@color/blue"-->
+<!--        android:backgroundTint="@color/white"/>-->
+
+
+
+</RelativeLayout>

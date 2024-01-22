@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ToolbarCustomFont" parent="@style/Widget.MaterialComponents.Toolbar.Primary">
+        <item name="android:fontFamily">@font/inter_semibold</item>
+
+    </style>
+
+    <style name="ToolbarTitleText">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+
+</resources>

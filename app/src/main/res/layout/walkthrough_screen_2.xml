@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundBlue">
+    <Button
+        android:id="@+id/SkipButton"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="671dp"
+        android:backgroundTint="@color/backgroundBlue"
+        android:text="SKIP"
+        android:textColor="@color/blue" />
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:src="@drawable/walkthrough2"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="TracK Your Loan Journey"
+        android:fontFamily="@font/inter_semibold"
+        android:textColor="@color/blue"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textViewDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewTitle"
+        android:textColor="@color/blue"
+        android:fontFamily="@font/inter"
+        android:layout_margin="30dp"
+        android:padding="8dp"
+        android:layout_marginTop="20dp"
+        />
+
+    <Button
+        android:id="@+id/actionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="33dp"
+        android:backgroundTint="@color/backgroundBlue"
+        android:text="Next"
+        android:textColor="@color/blue" />
+
+</RelativeLayout>
