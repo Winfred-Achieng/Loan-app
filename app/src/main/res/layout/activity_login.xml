@@ -45,7 +45,7 @@
         android:textColor="@color/black"/>
 
     <EditText
-        android:id="@+id/et_Email_Phone"
+        android:id="@+id/etEmailOrPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/tv_Email_Phone"
@@ -66,7 +66,7 @@
         android:id="@+id/tv_Pswd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/et_Email_Phone"
+        app:layout_constraintTop_toBottomOf="@id/etEmailOrPhone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:fontFamily="@font/inter_semibold"
@@ -77,26 +77,25 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="12dp"/>
 
-    <EditText
-        android:id="@+id/et_Pswd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_Pswd"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8px"
-        android:background="@drawable/rounded_edit_text"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:padding="8dp"
-        android:hint="••••••••"
-        android:textSize="16sp"
-        android:fontFamily="@font/inter"
-        android:inputType="textPassword"
-        android:drawableEnd="@drawable/ic_eye"
-        android:drawableRight="@drawable/ic_eye"
-        android:drawablePadding="8dp"/>
-    <TextView
+        <EditText
+            android:id="@+id/et_Pswd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_Pswd"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_edit_text"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:padding="8dp"
+            android:textSize="16sp"
+            android:fontFamily="@font/inter"
+            android:inputType="textPassword"
+            android:drawableRight="@drawable/ic_eye_closed"
+            android:drawablePadding="8dp"/>
+
+        <TextView
         android:id="@+id/tvForgotPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -136,13 +135,15 @@
         android:fontFamily="@font/inter"
         android:text="Don't have an account? Sign Up"
         android:clickable="true"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="95dp"
         android:textStyle="italic"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="80dp"
+
         />
 
 
     <ImageView
+        android:id="@+id/fingerprint"
         android:layout_width="36dp"
         android:layout_height="80dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -150,6 +151,7 @@
         android:layout_marginTop="160dp"
         android:layout_marginStart="18dp"
         android:src="@drawable/thumbprint"
+        android:clickable="true"
         />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

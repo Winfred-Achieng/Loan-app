@@ -9,9 +9,6 @@
     android:background="@color/white">
 
 
-
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,6 +25,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_gravity="center"
+            android:backgroundTint="@color/blue"
             android:visibility="gone" />
 
         <TextView
@@ -166,8 +164,7 @@
             android:layout_marginTop="8px"
             android:layout_marginRight="30dp"
             android:background="@drawable/rounded_edit_text"
-            android:drawableEnd="@drawable/ic_eye"
-            android:drawableRight="@drawable/ic_eye"
+            android:drawableRight="@drawable/ic_eye_closed"
             android:drawablePadding="8dp"
             android:fontFamily="@font/inter"
             android:hint="••••••••"
@@ -216,8 +213,7 @@
             android:layout_marginTop="8px"
             android:layout_marginRight="30dp"
             android:background="@drawable/rounded_edit_text"
-            android:drawableEnd="@drawable/ic_eye"
-            android:drawableRight="@drawable/ic_eye"
+            android:drawableRight="@drawable/ic_eye_closed"
             android:drawablePadding="8dp"
             android:fontFamily="@font/inter"
             android:hint="••••••••"
@@ -246,9 +242,8 @@
             android:id="@+id/noAccountLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="95dp"
-            android:layout_marginTop="8dp"
-
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="12dp"
             android:clickable="true"
             android:fontFamily="@font/inter"
             android:text="Already have an account? Log in"

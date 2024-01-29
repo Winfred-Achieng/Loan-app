@@ -31,9 +31,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginRight="35dp"
+            android:layout_marginRight="25dp"
             android:fontFamily="@font/inter_semibold"
-            android:text="Venus!"
+            android:text=" "
             android:textStyle="bold"
             android:textColor="@color/black"
             android:textSize="15sp" />

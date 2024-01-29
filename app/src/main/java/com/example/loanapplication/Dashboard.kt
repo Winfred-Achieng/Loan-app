@@ -23,6 +23,7 @@ class Dashboard : Fragment() {
     private val binding get() = _binding!!
     private lateinit var lineChart: LineChart
     private lateinit var xValues: List<String>
+    private var userName: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,11 +31,23 @@ class Dashboard : Fragment() {
     ): View? {
 
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+
+        arguments?.let {
+            userName = it.getString("user_name")
+        }
+
+        if (userName != null && _binding != null) {
+            _binding!!.tvUsername.text = "$userName !"
+        }
+
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
 
         binding.cardView1.setOnClickListener{
             val dialogFragment = RequestDialogFragment()

@@ -1,11 +1,15 @@
 package com.example.loanapplication
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.AbsoluteSizeSpan
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
@@ -40,6 +44,23 @@ class MainActivity : AppCompatActivity() {
         applyCustomFontToBottomNavTitles()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.top_app_bar, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.logout -> {
+                val intent = Intent(this, RegisterActivity::class.java)
+                startActivity(intent)
+                finish()
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
     private fun applyCustomFontToBottomNavTitles() {
         val menu = binding.bottomNavigationView.menu
 
@@ -70,6 +91,14 @@ class MainActivity : AppCompatActivity() {
     private fun replaceFragment(fragment: Fragment) {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
+
+        if (fragment is Dashboard){
+            val bundle = Bundle()
+            val userName = intent.getStringExtra("user_name")
+            bundle.putString("user_name", userName)
+            fragment.arguments = bundle
+        }
+
         fragmentTransaction.replace(R.id.frame_layout, fragment)
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
