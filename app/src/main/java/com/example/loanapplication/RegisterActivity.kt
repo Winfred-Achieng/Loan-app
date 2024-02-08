@@ -24,12 +24,13 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.loanapplication.viewModel.AuthViewModel
+import com.example.loanapplication.viewModel.RegisterViewModel
 import retrofit2.Call
 import retrofit2.Response
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
-    private val authViewModel: AuthViewModel by viewModels()
+    private val registerViewModel: RegisterViewModel by viewModels()
 
     private var isPasswordVisible = false
     private var isConfirmPasswordVisible = false
@@ -106,67 +107,105 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
+    private fun processFormFields() {
+        if (!validateName() || !validatePhone() || !validateEmail() || !validatePasswordAndConfirm()) {
+            return
+        }
 
-     fun processFormFields(){
-         if (!validateName() || !validatePhone()|| !validateEmail() || !validatePasswordAndConfirm()){
-             return
-         }
-         binding.btnSignup.isEnabled = false
-         binding.progressBar.visibility= View.VISIBLE
+        binding.btnSignup.isEnabled = false
+        binding.progressBar.visibility = View.VISIBLE
 
-         val apiService = RetrofitClient.getApiService()
+        val user = User(
+            name = binding.etName.text.toString(),
+            phone = binding.etPhone.text.toString(),
+            email = binding.etEmail.text.toString(),
+            password = binding.etPswd.text.toString()
+        )
 
-         val user = User(
-             name = binding.etName.text.toString(),
-             phone = binding.etPhone.text.toString(),
-             email = binding.etEmail.text.toString(),
-             password = binding.etPswd.text.toString()
-         )
+        registerViewModel.registerUser(user) { isSuccess, message ->
+            binding.btnSignup.isEnabled = true
+            binding.progressBar.visibility = View.GONE
 
-         val call = apiService.registerUser(user)
+            if (isSuccess) {
+                val userEmail = binding.etEmail.text.toString()
+                val userName = binding.etName.text.toString()
+                val phone = binding.etPhone.text.toString()
 
-         call.enqueue(object :retrofit2.Callback<ApiResponse<String>> {
-             override fun onResponse(call: Call<ApiResponse<String>>, response: Response<ApiResponse<String>>) {
-                 binding.btnSignup.isEnabled=true
-                 binding.progressBar.visibility =View.GONE
+                Toast.makeText(applicationContext, "Registration successful.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "Otp sent to  $userEmail and $phone", Toast.LENGTH_LONG).show()
+                val intent = Intent(applicationContext, OTPActivity::class.java)
+                intent.putExtra("user_email", userEmail)
+                intent.putExtra("user_name", userName)
+                startActivity(intent)
+                finish()
+            } else {
+                Log.e("RegistrationActivity", message ?: "Unknown error")
+                Toast.makeText(applicationContext, message ?: "Registration failed", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
 
-                 if (response.isSuccessful) {
-
-                     val responseBody = response.body()
-                     Log.d("Response Body", responseBody.toString())
-
-                     saveUserIdToPreferences(responseBody?.id ?: -1)
-
-                     val userEmail =binding.etEmail.text.toString()
-                     val userName =binding.etName.text.toString()
-
-                     Toast.makeText(applicationContext, "successful", Toast.LENGTH_LONG).show()
-                     val intent = Intent(applicationContext, OTPActivity::class.java)
-                     intent.putExtra("user_email",userEmail)
-                     intent.putExtra("user_name",userName)
-                     startActivity(intent)
-                     finish()
-                 } else {
-                     Log.e("RegistrationActivity", "Unsuccessful response. Status code: ${response.code()}")
-                     Log.d("RegistrationActivity", "Registration failed. Status code: ${response.code()}")
-
-                     Toast.makeText(applicationContext, "Registration failed.", Toast.LENGTH_LONG).show()
-                 }
-             }
-
-             override fun onFailure(call: Call<ApiResponse<String>>, t: Throwable) {
-                 binding.btnSignup.isEnabled = true
-                 binding.progressBar.visibility = View.GONE
-
-                 Log.e("RegistrationFailure", "Error: ${t.message}")
-                 Log.e("RegistrationFailure", "Call details: $call")
-
-                 t.printStackTrace()
-
-                 Toast.makeText(applicationContext, "Registration failed", Toast.LENGTH_LONG).show()
-             }
-         })
-     }
+//     fun processFormFields(){
+//         if (!validateName() || !validatePhone()|| !validateEmail() || !validatePasswordAndConfirm()){
+//             return
+//         }
+//         binding.btnSignup.isEnabled = false
+//         binding.progressBar.visibility= View.VISIBLE
+//
+//         val apiService = RetrofitClient.getApiService()
+//
+//         val user = User(
+//             name = binding.etName.text.toString(),
+//             phone = binding.etPhone.text.toString(),
+//             email = binding.etEmail.text.toString(),
+//             password = binding.etPswd.text.toString()
+//         )
+//
+//         val call = apiService.registerUser(user)
+//
+//         call.enqueue(object :retrofit2.Callback<ApiResponse<String>> {
+//             override fun onResponse(call: Call<ApiResponse<String>>, response: Response<ApiResponse<String>>) {
+//                 binding.btnSignup.isEnabled=true
+//                 binding.progressBar.visibility =View.GONE
+//
+//                 if (response.isSuccessful) {
+//
+//                     val responseBody = response.body()
+//                     Log.d("Response Body", responseBody.toString())
+//
+//                     saveUserIdToPreferences(responseBody?.id ?: -1)
+//
+//                     val userEmail =binding.etEmail.text.toString()
+//                     val userName =binding.etName.text.toString()
+//
+//                     Toast.makeText(applicationContext, "successful ", Toast.LENGTH_SHORT).show()
+//                     Toast.makeText(applicationContext, "Otp sent to phone and email ", Toast.LENGTH_LONG).show()
+//                     val intent = Intent(applicationContext, OTPActivity::class.java)
+//                     intent.putExtra("user_email",userEmail)
+//                     intent.putExtra("user_name",userName)
+//                     startActivity(intent)
+//                     finish()
+//                 } else {
+//                     Log.e("RegistrationActivity", "Unsuccessful response. Status code: ${response.code()}")
+//                     Log.d("RegistrationActivity", "Registration failed. Status code: ${response.code()}")
+//
+//                     Toast.makeText(applicationContext, "Registration failed.", Toast.LENGTH_LONG).show()
+//                 }
+//             }
+//
+//             override fun onFailure(call: Call<ApiResponse<String>>, t: Throwable) {
+//                 binding.btnSignup.isEnabled = true
+//                 binding.progressBar.visibility = View.GONE
+//
+//                 Log.e("RegistrationFailure", "Error: ${t.message}")
+//                 Log.e("RegistrationFailure", "Call details: $call")
+//
+//                 t.printStackTrace()
+//
+//                 Toast.makeText(applicationContext, "Registration failed", Toast.LENGTH_LONG).show()
+//             }
+//         })
+//     }
 
     private fun saveUserIdToPreferences(userId: Long) {
         val prefs = applicationContext.getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE)
@@ -177,7 +216,6 @@ class RegisterActivity : AppCompatActivity() {
     //validations
      private fun validateName (): Boolean {
          val name = binding.etName.text.toString()
-
          if(name.isEmpty()){
              binding.etName.error = "First name cannot be empty"
              return false
@@ -188,7 +226,6 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun validatePhone (): Boolean {
         val phone = binding.etPhone.text.toString()
-
         if(phone.isEmpty()){
             binding.etPhone.error = "Phone cannot be empty"
             return false

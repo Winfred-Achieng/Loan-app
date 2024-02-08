@@ -20,9 +20,9 @@ class WalkthroughPagerAdapter(private val layouts: List<Int>,
 
     override fun onBindViewHolder(holder: WalkthroughViewHolder, position: Int) {
         when (position) {
-            0 -> holder.bindData(R.drawable.walkthrough1, "UNLOCK FINANCIAL FREEDOM", "Seize financial freedom and unlock the lifestyle you've dreamt of.", true, "Next", buttonClickListener,skipButtonClickListener,true)
-            1 -> holder.bindData(R.drawable.walkthrough2, "TRACK YOUR LOAN JOURNEY", "Stay empowered and in control on your personalized financial journey.", true, "Next", buttonClickListener,null,false)
-            2 -> holder.bindData(R.drawable.walkthrough3, "SMART FINANCIAL PLANNING", "Witness your financial story unfold with precision, offering insights for informed decisions.", true, "GET STARTED", lastScreenClickListener,null,false)
+            0 -> holder.bindData(R.drawable.walkthrough11, "UNLOCK FINANCIAL FREEDOM", "Seize financial freedom and unlock the lifestyle you've dreamt of.", true, "Next", buttonClickListener,skipButtonClickListener,true)
+            1 -> holder.bindData(R.drawable.walkthrough222, "TRACK YOUR LOAN JOURNEY", "Stay empowered and in control on your personalized financial journey.", true, "Next", buttonClickListener,null,false)
+            2 -> holder.bindData(R.drawable.walkthrough333, "SMART FINANCIAL PLANNING", "Witness your financial story unfold with precision, offering insights for informed decisions.", true, "GET STARTED", lastScreenClickListener,null,false)
         }
     }
 

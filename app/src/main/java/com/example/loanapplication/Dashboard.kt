@@ -37,7 +37,7 @@ class Dashboard : Fragment() {
         }
 
         if (userName != null && _binding != null) {
-            _binding!!.tvUsername.text = "$userName !"
+            _binding!!.tvUsername.text = "$userName!"
         }
 
 

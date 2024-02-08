@@ -9,16 +9,12 @@ import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
 
-    private const val BASE_URL = "http://192.168.1.8:8080/api/v1/user/"
+    private const val BASE_URL = "https://loanish.lol/api/v1/user/"
     private val client = OkHttpClient.Builder()
         .connectTimeout(30, TimeUnit.SECONDS)
         .readTimeout(30, TimeUnit.SECONDS)
         .writeTimeout(30, TimeUnit.SECONDS)
         .build()
-
-    var gson = GsonBuilder()
-        .setLenient()
-        .create()
 
 
     private val retrofit: Retrofit = Retrofit.Builder()

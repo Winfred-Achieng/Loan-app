@@ -14,16 +14,20 @@
         android:layout_marginEnd="12dp"
         android:layout_marginRight="40dp"
         android:layout_marginBottom="671dp"
+        android:elevation="0dp"
         android:backgroundTint="@color/backgroundBlue"
         android:text="SKIP"
         android:textColor="@color/blue" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_width="320dp"
+        android:layout_height="180dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="60dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/walkthrough1" />
+        android:layout_marginStart="20dp"
+        android:src="@drawable/walkthrough11" />
 
     <TextView
         android:id="@+id/textViewTitle"
@@ -33,20 +37,22 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="50dp"
         android:fontFamily="@font/inter_semibold"
-        android:text="UnlocK Financial Freedom"
+        android:text="Unlock Financial Freedom"
         android:textColor="@color/blue"
         android:textSize="20sp" />
+
     <TextView
         android:id="@+id/textViewDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/blue"
-        android:fontFamily="@font/inter"
-        android:layout_margin="30dp"
-        android:padding="8dp"
         android:layout_below="@id/textViewTitle"
-        android:layout_marginTop="20dp"
-        />
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:fontFamily="@font/inter"
+        android:padding="8dp"
+        android:textColor="@color/blue" />
 
     <Button
         android:id="@+id/actionButton"
@@ -58,6 +64,7 @@
         android:layout_marginEnd="9dp"
         android:layout_marginRight="40dp"
         android:layout_marginBottom="33dp"
+        android:elevation="0dp"
         android:backgroundTint="@color/backgroundBlue"
         android:text="Next"
         android:textColor="@color/blue" />

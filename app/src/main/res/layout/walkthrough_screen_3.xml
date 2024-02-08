@@ -16,25 +16,31 @@
         android:layout_marginBottom="671dp"
         android:backgroundTint="@color/backgroundBlue"
         android:text="SKIP"
+        android:elevation="0dp"
         android:textColor="@color/blue" />
 
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:src="@drawable/walkthrough3"
+        android:layout_width="225dp"
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="90dp"
+        android:src="@drawable/walkthrough333"
         android:scaleType="centerCrop"/>
 
     <TextView
         android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Smart Financial Planning"
+        android:layout_centerInParent="false"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="293dp"
         android:fontFamily="@font/inter_semibold"
+        android:text="Smart Financial Planning"
         android:textColor="@color/blue"
-        android:textSize="20sp"
-        android:layout_centerInParent="true"/>
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/textViewDescription"

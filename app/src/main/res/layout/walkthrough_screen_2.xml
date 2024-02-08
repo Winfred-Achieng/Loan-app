@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundBlue">
+
     <Button
         android:id="@+id/SkipButton"
         android:layout_width="wrap_content"
@@ -10,28 +11,34 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="40dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="10dp"
         android:layout_marginBottom="671dp"
         android:backgroundTint="@color/backgroundBlue"
+        android:elevation="0dp"
         android:text="SKIP"
         android:textColor="@color/blue" />
 
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:src="@drawable/walkthrough2"
-        android:scaleType="centerCrop"/>
+        android:layout_width="300dp"
+        android:layout_height="180dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="10dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/walkthrough222" />
 
     <TextView
         android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="TracK Your Loan Journey"
+        android:layout_centerInParent="false"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="293dp"
         android:fontFamily="@font/inter_semibold"
+        android:text="TracK Your Loan Journey"
         android:textColor="@color/blue"
         android:textSize="20sp" />
 
@@ -40,12 +47,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/textViewTitle"
-        android:textColor="@color/blue"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
         android:fontFamily="@font/inter"
-        android:layout_margin="30dp"
         android:padding="8dp"
-        android:layout_marginTop="20dp"
-        />
+        android:textColor="@color/blue" />
 
     <Button
         android:id="@+id/actionButton"

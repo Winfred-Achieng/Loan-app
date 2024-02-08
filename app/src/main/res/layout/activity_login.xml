@@ -56,7 +56,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:padding="8dp"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:hint="Enter your email or phone"
         android:fontFamily="@font/inter"
         android:inputType="text"/>
@@ -89,7 +89,8 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:padding="8dp"
-            android:textSize="16sp"
+            android:hint="........"
+            android:textSize="14sp"
             android:fontFamily="@font/inter"
             android:inputType="textPassword"
             android:drawableRight="@drawable/ic_eye_closed"

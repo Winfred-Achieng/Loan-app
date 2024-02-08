@@ -32,13 +32,14 @@ import com.example.loanapplication.api.RetrofitClient
 import com.example.loanapplication.api.response.ApiResponse
 import com.example.loanapplication.databinding.ActivityLoginBinding
 import com.example.loanapplication.viewModel.AuthViewModel
+import com.example.loanapplication.viewModel.LoginViewModel
 import retrofit2.Call
 import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
-    private val authViewModel: AuthViewModel by viewModels()
+    private val loginViewModel: LoginViewModel by viewModels()
     private lateinit var sharedPreferences: SharedPreferences
 
     private companion object {
@@ -214,41 +215,16 @@ class LoginActivity : AppCompatActivity() {
             password = binding.etPswd.text.toString()
         )
 
-        val call = apiService.loginUser(loginRequest)
-
-        call.enqueue(object : retrofit2.Callback<ApiResponse<String>> {
-            override fun onResponse(
-                call: Call<ApiResponse<String>>,
-                response: Response<ApiResponse<String>>
-            ) {
-                if (response.isSuccessful) {
-                    val apiResponse = response.body()
-
-                    if (apiResponse?.success == true) {
-//                        val token = apiResponse.data
-                        val username = apiResponse.data
-
-                        Toast.makeText(applicationContext, "Login successful", Toast.LENGTH_LONG).show()
-
-                        val intent = Intent(applicationContext, MainActivity::class.java)
-                        intent.putExtra("user_name", username)
-//                        intent.putExtra("TOKEN_KEY", token)
-                        startActivity(intent)
-                        finish()
-                    } else {
-                        Log.d("LoginActivity", "Login failed: ${apiResponse?.message}")
-
-                        Toast.makeText(applicationContext, "Login failed", Toast.LENGTH_LONG).show()
-                    }
-                } else {
-                    Toast.makeText(applicationContext, "Invalid credentials", Toast.LENGTH_LONG).show()
-                }
+        loginViewModel.loginUser(loginRequest) { isSuccess, message ->
+            if (isSuccess) {
+                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                intent.putExtra("user_name", message)
+                startActivity(intent)
+                finish()
+            } else {
+                Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
             }
-
-            override fun onFailure(call: Call<ApiResponse<String>>, t: Throwable) {
-                Toast.makeText(applicationContext, "Network failure", Toast.LENGTH_LONG).show()
-            }
-        })
+        }
     }
 
     private fun validateEmailOrPhone(): Boolean {

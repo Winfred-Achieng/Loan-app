@@ -2,27 +2,21 @@ package com.example.loanapplication
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.example.loanapplication.api.CountdownCallback
-import com.example.loanapplication.api.ResendOtpRequest
-import com.example.loanapplication.api.RetrofitClient
-import com.example.loanapplication.api.VerificationRequest
-import com.example.loanapplication.api.response.ApiResponse
 import com.example.loanapplication.databinding.ActivityOtpactivityBinding
-import com.example.loanapplication.viewModel.AuthViewModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.example.loanapplication.viewModel.OtpViewModel
 
 class OTPActivity : AppCompatActivity(), CountdownCallback {
 
     private lateinit var binding: ActivityOtpactivityBinding
-    private val authViewModel: AuthViewModel by viewModels()
+    private val otpViewModel: OtpViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -32,99 +26,62 @@ class OTPActivity : AppCompatActivity(), CountdownCallback {
         binding.btnVerifyOtp.setOnClickListener {
             verifyOtp()
         }
+
         binding.tvResendOtp.setOnClickListener {
-            resendOtp(this)
+            resendOtp()
         }
     }
 
-    private fun resendOtp(callback: CountdownCallback) {
+    private fun resendOtp() {
         val prefs = applicationContext.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        val userId = prefs.getLong(USER_ID, -1)
-        val email =intent.getStringExtra("user_email") ?: ""
+        val email = intent.getStringExtra("user_email") ?: ""
 
-        val apiService= RetrofitClient.getApiService()
-        val resendOtpRequest = ResendOtpRequest(
-            email = email)
-        val call = apiService.resendOtp(resendOtpRequest)
-
-        val cooldownMillis: Long = 30 * 1000
-        val countdownInterval: Long = 1000
-
-        object: CountDownTimer(cooldownMillis, countdownInterval){
-            override fun onTick(millisUntilFinished: Long) {
-                callback.onTick(millisUntilFinished)
-            }
-
-            override fun onFinish() {
-                callback.onFinish()
-                call.enqueue(object : retrofit2.Callback<ApiResponse<String>> {
-                    override fun onResponse(call: Call<ApiResponse<String>>, response: Response<ApiResponse<String>>) {
-                        if (response.isSuccessful) {
-                            val apiResponse = response.body()
-
-                            if (apiResponse?.success == true) {
-                                showToast("OTP resent successfully")
-                            } else {
-                                    showToast("Failed to resend OTP: ${apiResponse?.message}")
-                            }
-                        } else {
-                            showToast("HTTP error: ${response.code()}")
-                        }
-                    }
-
-                    override fun onFailure(call: Call<ApiResponse<String>>, t: Throwable) {
-                        showToast("Network failure: ${t.message}")
-                    }
-                })
-            }
-        }   .start()
-    }
-
-
-    private fun showToast(message: String) {
-        Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
+        otpViewModel.resendOtp(email,
+            onSuccess = {
+                showToast("OTP resent successfully")
+                startCountdownTimer()
+            },
+            onError = { errorMessage ->
+                showToast(errorMessage)
+            })
     }
 
     private fun verifyOtp() {
-        val email =intent.getStringExtra("user_email") ?: ""
-        val apiService = RetrofitClient.getApiService()
-        val verificationRequest = VerificationRequest(
-            enteredOtp = binding.etOtp.text.toString(),
-            email = email
-        )
-        val call = apiService.verifyOtp(verificationRequest)
+        val email = intent.getStringExtra("user_email") ?: ""
+        val enteredOtp = binding.etOtp.text.toString()
 
-        call.enqueue(object : retrofit2.Callback<ApiResponse<String>> {
-            override fun onResponse(
-                call: Call<ApiResponse<String>>,
-                response: Response<ApiResponse<String>>
-            ) {
-                if (response.isSuccessful) {
-                    val apiResponse = response.body()
-                    if (apiResponse?.success == true) {
+        otpViewModel.verifyOtp(enteredOtp, email,
+            onSuccess = {
+                showToast("OTP verified successfully")
 
-                        Toast.makeText(applicationContext, "OTP verified successfully", Toast.LENGTH_SHORT).show()
-
-                        val userName = intent.getStringExtra("user_name")
-                        val intent = Intent(applicationContext, LoginActivity::class.java)
-                        intent.putExtra("user_name", userName)
-                        startActivity(intent)
-                        finish()
-                    } else {
-                        Toast.makeText(applicationContext, "OTP verification failed", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<ApiResponse<String>>, t: Throwable) {
-                Toast.makeText(applicationContext, "Network failure", Toast.LENGTH_SHORT).show()
-            }
-        })
+                val userName = intent.getStringExtra("user_name")
+                val intent = Intent(applicationContext, LoginActivity::class.java)
+                intent.putExtra("user_name", userName)
+                startActivity(intent)
+                finish()
+            },
+            onError = {
+                showToast("OTP verification failed")
+            })
     }
 
-    companion object {
-        private const val USER_ID = "userId"
-        private const val PREFS_NAME = "MyPrefs"
+    private fun startCountdownTimer() {
+        val cooldownMillis: Long = 30 * 1000
+        val countdownInterval: Long = 1000
+
+        object : CountDownTimer(cooldownMillis, countdownInterval) {
+            override fun onTick(millisUntilFinished: Long) {
+                onTick(millisUntilFinished)
+            }
+
+            override fun onFinish() {
+                onFinish()
+            }
+        }.start()
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
     }
 
     override fun onTick(millisUntilFinished: Long) {
@@ -138,5 +95,7 @@ class OTPActivity : AppCompatActivity(), CountdownCallback {
         binding.tvResendOtp.visibility = View.VISIBLE
     }
 
-
+    companion object {
+        private const val PREFS_NAME = "MyPrefs"
+    }
 }
