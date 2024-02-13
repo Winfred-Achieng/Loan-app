@@ -37,7 +37,7 @@ class Dashboard : Fragment() {
         }
 
         if (userName != null && _binding != null) {
-            _binding!!.tvUsername.text = "$userName!"
+            _binding!!.tvUsername.text = "Welcome Back, $userName!"
         }
 
 
@@ -70,71 +70,6 @@ class Dashboard : Fragment() {
 
 
 
-       // lineChart = binding.lineChart
-
-//        val description = Description()
-//        description.text = ""
-//        description.setPosition(150f, 15f)
-//        lineChart.description = description
-//        lineChart.axisRight.setDrawLabels(false)
-//
-//        xValues = Arrays.asList("JAN", "FEB", "MAR", "APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC",)
-//
-//        val xAxis = lineChart.xAxis
-//        xAxis.position = XAxis.XAxisPosition.BOTTOM
-//        xAxis.valueFormatter = IndexAxisValueFormatter(xValues)
-//        xAxis.labelCount = xValues.size
-//        xAxis.granularity = 1f
-//
-//        val yAxis = lineChart.axisLeft
-//        yAxis.axisMinimum = 0f
-//        yAxis.axisMaximum = 100f
-//        yAxis.axisLineWidth = 2f
-//        yAxis.axisLineColor = Color.BLACK
-//        yAxis.labelCount = 10
-//        yAxis.setDrawGridLines(false)
-//        yAxis.setDrawGridLinesBehindData(false)
-//
-//        val entries1 = ArrayList<Entry>()
-//        entries1.add(Entry(0f, 10f))
-//        entries1.add(Entry(1f, 10f))
-//        entries1.add(Entry(2f, 15f))
-//        entries1.add(Entry(3f, 45f))
-//        entries1.add(Entry(4f, 48f))
-//        entries1.add(Entry(5f, 36f))
-//        entries1.add(Entry(6f, 58f))
-//        entries1.add(Entry(7f, 62f))
-//        entries1.add(Entry(8f, 55f))
-//        entries1.add(Entry(9f, 85f))
-//        entries1.add(Entry(10f, 74f))
-//        entries1.add(Entry(11f, 95f))
-//
-//        val entries2 = ArrayList<Entry>()
-//        entries2.add(Entry(0f, 5f))
-//        entries2.add(Entry(1f, 15f))
-//        entries2.add(Entry(2f, 25f))
-//        entries2.add(Entry(3f, 30f))
-//        entries2.add(Entry(4f, 48f))
-//        entries2.add(Entry(5f, 34f))
-//        entries2.add(Entry(6f, 53f))
-//        entries2.add(Entry(7f, 68f))
-//        entries2.add(Entry(8f, 54f))
-//        entries2.add(Entry(9f, 81f))
-//        entries2.add(Entry(10f, 77f))
-//        entries2.add(Entry(11f, 99f))
-//
-//        val dataSet1 = LineDataSet(entries1, "")
-//        dataSet1.color = Color.BLUE
-//        dataSet1.setDrawValues(false)
-//
-//        val dataSet2 = LineDataSet(entries2, "")
-//        dataSet2.color = Color.GREEN
-//        dataSet1.setDrawValues(false)
-//
-//        val lineData = LineData(dataSet1, dataSet2)
-//        lineChart.data = lineData
-//
-//        lineChart.invalidate()
     }
 
     override fun onDestroyView() {

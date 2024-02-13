@@ -7,8 +7,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 
-object RetrofitClient {
+object RetrofitClient {;
 
+   // private const val BASE_URL = "http://192.168.0.15:8090/api/v1/user/"
     private const val BASE_URL = "https://loanish.lol/api/v1/user/"
     private val client = OkHttpClient.Builder()
         .connectTimeout(30, TimeUnit.SECONDS)

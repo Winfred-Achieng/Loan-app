@@ -16,7 +16,7 @@
 
         <!--TextView WELCOME-->
         <TextView
-            android:id="@+id/tvWelcome"
+            android:id="@+id/tvUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -24,20 +24,20 @@
             android:text="Welcome Back,"
             android:textColor="@color/black"
             android:textSize="15sp" />
-        <!--TextView Username-->
+        <!--TextView Username
         <TextView
-            android:id="@+id/tvUsername"
+            android:id="@+id/tvusername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginRight="24dp"
+            android:layout_marginRight="21dp"
             android:fontFamily="@font/inter_semibold"
             android:text=""
             android:textStyle="bold"
             android:textColor="@color/black"
             android:textSize="15sp" />
-
+-->
 
         <!--......1st CARD.....-->
         <androidx.cardview.widget.CardView

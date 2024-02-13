@@ -7,12 +7,14 @@ import android.text.Spannable
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.AbsoluteSizeSpan
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.example.loanapplication.databinding.ActivityMainBinding
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -49,16 +51,34 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.logout -> {
-                val intent = Intent(this, RegisterActivity::class.java)
-                startActivity(intent)
-                finish()
-                return true
-            }
-            else -> return super.onOptionsItemSelected(item)
-        }
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        Log.d("MenuItem","Item clicked: ${item.title}")
+//        when (item.itemId) {
+//            R.id.logout -> {
+//                logout()
+//                return true
+//            }
+//            else -> return super.onOptionsItemSelected(item)
+//        }
+//
+//    }
+
+    fun logoutOfMain(item: MenuItem) {
+       logout()
+        Toast.makeText(this, "Logged out ", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun logout() {
+        Log.d("Logout", "Before starting LoginActivity")
+        supportFragmentManager.popBackStackImmediate(null,FragmentManager.POP_BACK_STACK_INCLUSIVE)
+
+        val intent = Intent(this@MainActivity, LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+
+        Log.d("Logout", "After starting LoginActivity")
+
+        finish()
     }
 
     private fun applyCustomFontToBottomNavTitles() {

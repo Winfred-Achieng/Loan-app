@@ -189,7 +189,7 @@ class LoginActivity : AppCompatActivity() {
             val blueColor = ContextCompat.getColor(this, R.color.blue)
 
             val spannableString = SpannableString(completeText)
-            spannableString.setSpan(UnderlineSpan(), startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+          //  spannableString.setSpan(UnderlineSpan(), startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
             spannableString.setSpan(ForegroundColorSpan(blueColor), startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
 
             binding.noAccountSignup.text = spannableString

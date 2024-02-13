@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".OTPActivity">
 
     <!-- activity_login.xml -->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="100dp"
+        android:paddingBottom="150dp"
+        android:fadeScrollbars="true">
+
+
     <TextView
         android:id="@+id/tvOtp"
         android:layout_width="match_parent"
@@ -15,6 +25,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:text="Verify OTP"
+        android:textColorHint="@color/black"
         android:layout_marginTop="20dp"
         android:padding="5dp"
         android:layout_marginStart="15dp"
@@ -33,8 +44,10 @@
         android:layout_marginTop="80dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:textColorHint="@color/black"
         android:padding="8dp"
         android:textSize="14sp"
+        android:textColor="@color/black"
         android:hint="Enter otp"
         android:background="@drawable/rounded_edit_text"
         android:fontFamily="@font/inter"
@@ -86,9 +99,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginStart="30dp"
         android:visibility="visible"
-
         />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

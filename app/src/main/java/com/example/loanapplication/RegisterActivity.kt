@@ -14,8 +14,10 @@ import com.example.loanapplication.api.RetrofitClient
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.Drawable
+import android.text.Editable
 import android.text.SpannableString
 import android.text.Spanned
+import android.text.TextWatcher
 import android.text.method.PasswordTransformationMethod
 import android.text.style.ForegroundColorSpan
 import android.text.style.UnderlineSpan
@@ -34,8 +36,6 @@ class RegisterActivity : AppCompatActivity() {
 
     private var isPasswordVisible = false
     private var isConfirmPasswordVisible = false
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
@@ -60,7 +60,7 @@ class RegisterActivity : AppCompatActivity() {
             val blueColor = ContextCompat.getColor(this, R.color.blue)
 
             val spannableString = SpannableString(completeText)
-            spannableString.setSpan(UnderlineSpan(), startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+          //  spannableString.setSpan(UnderlineSpan(), startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
             spannableString.setSpan(ForegroundColorSpan(blueColor), startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
 
             binding.noAccountLogin.text = spannableString
@@ -73,6 +73,25 @@ class RegisterActivity : AppCompatActivity() {
         } else {
             binding.noAccountLogin.setTextColor(Color.BLACK)
         }
+
+        binding.etPswd.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(charSequence: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(editable: Editable?) {
+                // Checking the length of the password
+                val password = editable.toString()
+                if (password.length < 6) {
+                    binding.tvPasswordRequirement.visibility = View.VISIBLE
+                } else {
+                    binding.tvPasswordRequirement.visibility = View.INVISIBLE
+                }
+            }
+        })
+
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -261,7 +280,7 @@ class RegisterActivity : AppCompatActivity() {
             binding.etConfirmPswd.error = "Confirm Password cannot be empty"
             return false
         }else if (password.length < 6){
-            binding.etPhone.error = "Password should be at least 6 characters"
+            binding.etPswd.error = "Password should be at least 6 characters"
             return false        }
         else if (password!=confirm){
             binding.etConfirmPswd.error = "Password do not match"

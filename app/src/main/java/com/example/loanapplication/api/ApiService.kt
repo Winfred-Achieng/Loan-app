@@ -2,10 +2,7 @@ package com.example.loanapplication.api
 
 import com.example.loanapplication.api.response.ApiResponse
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 
 interface ApiService {
@@ -25,4 +22,9 @@ interface ApiService {
     @GET("getUsername")
     fun getUsername(@Query("email") email: String): Call<ApiResponse<String>>
 
+    @POST("passwordReset")
+    fun initiatePasswordReset(@Body resetRequest: PasswordResetRequest): Call<ApiResponse<String>>
+
+    @PATCH("verifyPasswordResetOtp")
+    fun verifyPasswordResetOtp(@Body resetRequest: PasswordResetRequest):Call<ApiResponse<String>>
 }
